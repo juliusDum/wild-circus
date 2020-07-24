@@ -3,14 +3,14 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use MongoDB\Driver\Monitoring\Subscriber;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -19,68 +19,30 @@ class User
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $firstname;
+    public function __construct()
+    {
+        $this->roles = ["ROLE_SUBSCRIBER"];
+    }
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $lastname;
-
-    /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="json")
      */
-    private $address;
+    private $roles = [];
 
     /**
-     * @ORM\Column(type="integer")
+     * @var string The hashed password
+     * @ORM\Column(type="string")
      */
-    private $phone;
-
-    /**
-     * @ORM\OneToMany(targetEntity=OrderTicket::class, mappedBy="user", orphanRemoval=true)
-     */
-    private $orderTickets;
-
-    public function __construct()
-    {
-        $this->orderTickets = new ArrayCollection();
-    }
+    private $password;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getFirstname(): ?string
-    {
-        return $this->firstname;
-    }
-
-    public function setFirstname(string $firstname): self
-    {
-        $this->firstname = $firstname;
-
-        return $this;
-    }
-
-    public function getLastname(): ?string
-    {
-        return $this->lastname;
-    }
-
-    public function setLastname(string $lastname): self
-    {
-        $this->lastname = $lastname;
-
-        return $this;
     }
 
     public function getEmail(): ?string
@@ -95,58 +57,64 @@ class User
         return $this;
     }
 
-    public function getAddress(): ?string
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUsername(): string
     {
-        return $this->address;
+        return (string) $this->email;
     }
 
-    public function setAddress(string $address): self
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        $this->address = $address;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
 
-        return $this;
+        return array_unique($roles);
     }
 
-    public function getPhone(): ?int
+    public function setRoles(array $roles): self
     {
-        return $this->phone;
-    }
-
-    public function setPhone(int $phone): self
-    {
-        $this->phone = $phone;
+        $this->roles = $roles;
 
         return $this;
     }
 
     /**
-     * @return Collection|OrderTicket[]
+     * @see UserInterface
      */
-    public function getOrderTickets(): Collection
+    public function getPassword(): string
     {
-        return $this->orderTickets;
+        return (string) $this->password;
     }
 
-    public function addOrderTicket(OrderTicket $orderTicket): self
+    public function setPassword(string $password): self
     {
-        if (!$this->orderTickets->contains($orderTicket)) {
-            $this->orderTickets[] = $orderTicket;
-            $orderTicket->setUser($this);
-        }
+        $this->password = $password;
 
         return $this;
     }
 
-    public function removeOrderTicket(OrderTicket $orderTicket): self
+    /**
+     * @see UserInterface
+     */
+    public function getSalt()
     {
-        if ($this->orderTickets->contains($orderTicket)) {
-            $this->orderTickets->removeElement($orderTicket);
-            // set the owning side to null (unless already changed)
-            if ($orderTicket->getUser() === $this) {
-                $orderTicket->setUser(null);
-            }
-        }
+        // not needed when using the "bcrypt" algorithm in security.yaml
+    }
 
-        return $this;
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 }

@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Artist index{% endblock %}
+
+{% block body %}
+    <h1 class="mb-3" style="text-align: center">Artists</h1>
+        <tbody>
+        {% for artist in artists %}
+            <div class="card" style="width: 30rem; margin-left: 32%">
+                <img src="{{ artist.picture }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <a class="btn btn-success" href="{{ path('artist_show', {'id': artist.id}) }}">show</a>
+                    <a class="btn btn-warning" href="{{ path('artist_edit', {'id': artist.id}) }}">edit</a>
+                </div>
+            </div>
+            <br>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-info mt-5 mb-3" href="{{ path('artist_new') }}">Create new</a>
+{% endblock %}

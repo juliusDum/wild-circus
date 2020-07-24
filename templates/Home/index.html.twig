@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="carouselExampleIndicators" class="carousel slide ml-5" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://petitpaume.com/image/58b60eb7-82e9-479a-9bc2-ec43c677ec15" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="https://www.leparisien.fr/resizer/s3z8-lRYM1kiq00kzws60X9dqwU=/1280x800/arc-anglerfish-eu-central-1-prod-leparisien.s3.amazonaws.com/public/SVVAZHNELKZ43V2FC3VTPKSEFY.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="https://static.lexpress.fr/medias_12172/w_2000,h_1125,c_fill,g_north/v1573953220/le-cirque-de-paname-le-14-novembre-2019-a-paris_6232230.jpg" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <p class="texthome">Ils parlent de nous!</p>
+    <div class="container">
+    <div class="row card1">
+        <div class="justify-content-center mr-5" style="width: 18rem;">
+            <img src="/assets/logo/logo-parisien.png" class="card-img-top logocard" alt="...">
+            <div class="card-body">
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+        </div>
+        <div class="justify-content-center mr-5" style="width: 18rem;">
+            <img src="/assets/logo/Télérama-logo.png" class="card-img-top logocard" alt="...">
+            <div class="card-body">
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+        </div>
+        <div class="justify-content-center mr-5" style="width: 18rem;">
+            <img src="/assets/logo/New-york-times-logo.png" class="card-img-top logocard" alt="...">
+            <div class="card-body">
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+        </div>
+        </div>
+    </div>
+{% endblock %}

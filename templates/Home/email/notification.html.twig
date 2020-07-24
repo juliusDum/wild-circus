@@ -1,0 +1,29 @@
+<container>
+        <row class="welcome">
+            <columns>
+                <spacer size="30"></spacer>
+                <h1>
+                    <center>
+                        {{ contact.firstname }} {{ contact.lastname }}
+                    </center>
+                </h1>
+            </columns>
+        </row>
+        <spacer size="30"></spacer>
+        <row>
+            <columns>
+                <p>
+                    <strong>Email</strong> : {{ contact.email }}
+                </p>
+                <p>
+                    <strong>Objet</strong> : {{ contact.object }}
+                </p>
+                <p>
+                    Vous avez reçu un mail de <strong>{{ contact.firstname }} {{ contact.lastname }}</strong> :
+                </p>
+                <p>
+                    {{ contact.message }}
+                </p>
+            </columns>
+        </row>
+</container>

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container-fluid">
+    {% for circus in circus %}
+        <div class="card circus-card" style="width: 80%;">
+            <img class="img-circus" src="{{ circus.picture }}" alt="">
+            <div class="card-body">
+                <h1 class="title-circus">{{ circus.name }}</h1>
+                <p class="resume-circus">{{ circus.resume }}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

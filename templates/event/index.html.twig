@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Event{% endblock %}
+
+{% block body %}
+    <h1 class="mb-5" style="text-align: center; color: gray">Events</h1>
+        <tbody>
+        {% for event in events %}
+            <div class="card bg-dark text-white">
+                <img src="{{ event.picture }}" class="card-img" alt="...">
+                <div class="card-img-overlay">
+                    <h1 class="card-title" style="text-align: center">{{ event.name }}</h1>
+                    <p class="card-text">{{ event.resume }}.</p>
+                    <a class="btn btn-success" href="{{ path('event_show', {'id': event.id}) }}">show</a>
+                    <a class="btn btn-warning" href="{{ path('event_edit', {'id': event.id}) }}">edit</a>
+                </div>
+            </div>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-info mt-5 mb-3" href="{{ path('event_new') }}">Create new</a>
+{% endblock %}

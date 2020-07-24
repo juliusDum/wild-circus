@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="grid">
+            {% for gallery in gallery %}
+                <img id="img-gallery" style="width: 350px; height: 250px; margin: 8px;" src="{{ gallery.picture }}" alt="">
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
