@@ -25,12 +25,12 @@ class Price
     private $rang;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $price;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Ticket::class, mappedBy="price")
+     * @ORM\OneToMany(targetEntity=Ticket::class, mappedBy="price", orphanRemoval=true)
      */
     private $tickets;
 
@@ -56,12 +56,12 @@ class Price
         return $this;
     }
 
-    public function getPrice(): ?string
+    public function getPrice(): ?int
     {
         return $this->price;
     }
 
-    public function setPrice(string $price): self
+    public function setPrice(int $price): self
     {
         $this->price = $price;
 
@@ -80,7 +80,7 @@ class Price
     {
         if (!$this->tickets->contains($ticket)) {
             $this->tickets[] = $ticket;
-            $ticket->addPrice($this);
+            $ticket->setPrice($this);
         }
 
         return $this;
@@ -90,9 +90,17 @@ class Price
     {
         if ($this->tickets->contains($ticket)) {
             $this->tickets->removeElement($ticket);
-            $ticket->removePrice($this);
+            // set the owning side to null (unless already changed)
+            if ($ticket->getPrice() === $this) {
+                $ticket->setPrice(null);
+            }
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->rang;
     }
 }

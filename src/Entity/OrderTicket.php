@@ -26,12 +26,6 @@ class OrderTicket
     private $circus;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="orderTickets")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $user;
-
-    /**
      * @ORM\OneToMany(targetEntity=Ticket::class, mappedBy="orderTicket", orphanRemoval=true)
      */
     private $ticket;
@@ -39,7 +33,6 @@ class OrderTicket
     public function __construct()
     {
         $this->ticket = new ArrayCollection();
-        $this->tickets = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -55,18 +48,6 @@ class OrderTicket
     public function setCircus(?Circus $circus): self
     {
         $this->circus = $circus;
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
 
         return $this;
     }

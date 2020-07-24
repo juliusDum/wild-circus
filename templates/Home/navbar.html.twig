@@ -1,0 +1,30 @@
+<ul class="nav">
+    <a class="wildcircus ml-2" style="text-decoration: none" href="{{ path('home') }}"><h1>Wild Circus</h1></a>
+    <li class="nav-item mt-2">
+        <a class="nav-link active ml-5" href="{{ path('circus') }}">The circus</a>
+    </li>
+    {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+    <li class="nav-item mt-2">
+        <a class="nav-link" href="{{ path('ticket_index') }}">Tickets</a>
+    </li>
+    {% endif %}
+    <li class="nav-item mt-2">
+        <a class="nav-link" href="{{ path('gallery_photo') }}">Photo gallery</a>
+    </li>
+    <li class="nav-item mt-2">
+        <a class="nav-link" href="{{ path('event_index') }}">Events</a>
+    </li>
+    <li class="nav-item mt-2">
+        <a class="nav-link" href="{{ path('artist_index') }}">Artists</a>
+    </li>
+    <li class="nav-item mt-2">
+        <a class="nav-link" href="{{ path('contact') }}">Contact</a>
+    </li>
+
+    {% if app.user %}
+        <a class="nav-link mt-2 fas fa-sign-out-alt" style="color: red" href="{{ path('app_logout') }}"></a>
+    {% else %}
+        <a class="nav-link mt-2" href="{{ path('app_login') }}"> login</a>
+    {% endif %}
+</ul>
+

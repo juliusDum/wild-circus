@@ -1,0 +1,72 @@
+body {
+    margin:0;
+    padding:0;
+}
+
+footer{
+    background: linear-gradient(70deg, white, pink);
+    width: 100%;
+
+}
+
+.wildcircus, a:hover {
+    color: #313131;
+}
+
+.link {
+    color: #222222;
+}
+
+#carouselExampleIndicators {
+    width: 93%;
+    margin-bottom: 40px;
+    margin-top: 3%;
+
+}
+
+.d-block {
+    height: 600px !important;
+}
+
+.card1 {
+    margin-left: 9%;
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+.texthome {
+    text-align: center;
+    font-size: 50px;
+    color: gray;
+}
+
+.logocard {
+    height: 100px !important;
+}
+
+.circus-card {
+    margin-left: 11%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.title-circus, .resume-circus {
+    color: gray;
+}
+
+.legal {
+    text-decoration: underline;
+    color: black;
+}
+
+.nav-link {
+    color: gray;
+}
+
+.btn-info {
+    margin-left: 46% !important;
+}
+
+.fa {
+    color: black;
+}

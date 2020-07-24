@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ticket index{% endblock %}
+
+{% block body %}
+    <h1 style="text-align: center">Tickets</h1>
+    <table class="table">
+        {% for ticket in tickets %}
+            <div class="card mb-3" style="width: 18rem; margin-left: 40%">
+                <img src="{{ ticket.event.picture }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ ticket.category }}</h5>
+                    <p class="card-text">{{ ticket.price }}</p>
+                    <p class="card-text">{{ ticket.price.price }}€</p>
+                    <a href="#" class="fas fa-shopping-basket"></a>
+                </div>
+            </div>
+            {% if is_granted("ROLE_ADMIN")%}
+                    <a href="{{ path('ticket_show', {'id': ticket.id}) }}">show</a>
+                    <a href="{{ path('ticket_edit', {'id': ticket.id}) }}">edit</a>
+            {% endif %}
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if is_granted("ROLE_ADMIN")%}
+        <a href="{{ path('ticket_new') }}">Create new</a>
+    {% endif %}
+{% endblock %}

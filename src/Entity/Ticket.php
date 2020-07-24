@@ -41,15 +41,16 @@ class Ticket
     private $event;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Price::class, inversedBy="tickets")
-     */
-    private $price;
-
-    /**
      * @ORM\ManyToOne(targetEntity=OrderTicket::class, inversedBy="ticket")
      * @ORM\JoinColumn(nullable=false)
      */
     private $orderTicket;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Price::class, inversedBy="tickets")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $price;
 
     public function getId(): ?int
     {
@@ -104,32 +105,6 @@ class Ticket
         return $this;
     }
 
-    /**
-     * @return Collection|Price[]
-     */
-    public function getPrice(): Collection
-    {
-        return $this->price;
-    }
-
-    public function addPrice(Price $price): self
-    {
-        if (!$this->price->contains($price)) {
-            $this->price[] = $price;
-        }
-
-        return $this;
-    }
-
-    public function removePrice(Price $price): self
-    {
-        if ($this->price->contains($price)) {
-            $this->price->removeElement($price);
-        }
-
-        return $this;
-    }
-
     public function getOrderTicket(): ?OrderTicket
     {
         return $this->orderTicket;
@@ -138,6 +113,18 @@ class Ticket
     public function setOrderTicket(?OrderTicket $orderTicket): self
     {
         $this->orderTicket = $orderTicket;
+
+        return $this;
+    }
+
+    public function getPrice(): ?Price
+    {
+        return $this->price;
+    }
+
+    public function setPrice(?Price $price): self
+    {
+        $this->price = $price;
 
         return $this;
     }
