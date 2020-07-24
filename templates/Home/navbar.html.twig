@@ -3,9 +3,11 @@
     <li class="nav-item mt-2">
         <a class="nav-link active ml-5" href="{{ path('circus') }}">The circus</a>
     </li>
+    {% if is_granted('IS_AUTHENTICATED_FULLY')%}
     <li class="nav-item mt-2">
         <a class="nav-link" href="{{ path('ticket_index') }}">Tickets</a>
     </li>
+    {% endif %}
     <li class="nav-item mt-2">
         <a class="nav-link" href="{{ path('gallery_photo') }}">Photo gallery</a>
     </li>
@@ -20,9 +22,9 @@
     </li>
 
     {% if app.user %}
-        <a class="nav-link mt-2" href="{{ path('app_logout') }}"> Se déconnecter</a>
+        <a class="nav-link mt-2 fas fa-sign-out-alt" style="color: red" href="{{ path('app_logout') }}"></a>
     {% else %}
-        <a class="nav-link mt-2" href="{{ path('app_login') }}"> Se connecter</a>
+        <a class="nav-link mt-2" href="{{ path('app_login') }}"> login</a>
     {% endif %}
 </ul>
 

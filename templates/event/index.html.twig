@@ -11,8 +11,10 @@
                 <div class="card-img-overlay">
                     <h1 class="card-title" style="text-align: center">{{ event.name }}</h1>
                     <p class="card-text">{{ event.resume }}.</p>
+                    {% if is_granted("ROLE_ADMIN")%}
                     <a class="btn btn-success" href="{{ path('event_show', {'id': event.id}) }}">show</a>
                     <a class="btn btn-warning" href="{{ path('event_edit', {'id': event.id}) }}">edit</a>
+                    {% endif %}
                 </div>
             </div>
         {% else %}
@@ -22,6 +24,7 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a class="btn btn-info mt-5 mb-3" href="{{ path('event_new') }}">Create new</a>
+    {% if is_granted("ROLE_ADMIN")%}
+        <a class="btn btn-info mt-5 mb-3" href="{{ path('event_new') }}">Create new</a>
+    {% endif %}
 {% endblock %}
