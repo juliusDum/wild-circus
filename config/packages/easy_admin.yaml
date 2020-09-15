@@ -1,0 +1,10 @@
+easy_admin:
+    entities:
+        - App\Entity\Price
+        - App\Entity\Event
+        - App\Entity\User
+        - App\Entity\Artist
+        - App\Entity\Circus
+        - App\Entity\Photogallery
+        - App\Entity\Ticket
+        - App\Entity\OrderTicket
