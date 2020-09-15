@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=TicketRepository::class)
+ * @ORM\Entity(repositoryClass="App\Repository\TicketRepository", repositoryClass=TicketRepository::class)
  */
 class Ticket
 {
@@ -128,4 +128,5 @@ class Ticket
 
         return $this;
     }
+
 }
